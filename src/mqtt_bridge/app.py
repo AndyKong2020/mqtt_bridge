@@ -1,3 +1,5 @@
+import time
+
 import inject
 import paho.mqtt.client as mqtt
 import rospy
@@ -22,6 +24,10 @@ def create_config(mqtt_client, serializer, deserializer, mqtt_private_path):
 
 
 def mqtt_bridge_node():
+
+    # a = 1
+    # while a:
+    #     time.sleep(1)
     # init node
     rospy.init_node('mqtt_bridge_node')
 
@@ -66,11 +72,11 @@ def mqtt_bridge_node():
     rospy.spin()
 
 
-def _on_connect(client, userdata, flags, response_code):
+def _on_connect(client, userdata, flags, response_code, properties):
     rospy.loginfo('MQTT connected')
 
 
-def _on_disconnect(client, userdata, response_code):
+def _on_disconnect(client, userdata, response_code, properties):
     rospy.loginfo('MQTT disconnected')
 
 
